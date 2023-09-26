@@ -17,8 +17,9 @@ const createUser = async (req, res) => {
     res.json(error);
   }
 };
-const getAllUsers = (req, res) => {
-  res.json("get all users");
+const getAllUsers = async (req, res) => {
+  const users = await User.find({});
+  res.status(StatusCodes.OK).json(users);
 };
 
 module.exports = {

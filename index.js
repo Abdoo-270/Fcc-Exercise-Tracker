@@ -10,6 +10,8 @@ app.use(express.json());
 const connectDB = require("./db/connect");
 // routers
 const userRouter = require("./routers/userRoutes");
+const exerciseRouter = require("./routers/exerciseRoutes");
+const logRouter = require("./routers/logRoutes");
 require("dotenv").config();
 
 app.get("/", (req, res) => {
@@ -19,6 +21,8 @@ app.get("/api", (req, res) => {
   res.send("Welcome to the API home page!");
 });
 app.use("/api/users", userRouter);
+app.use("/api/users", exerciseRouter);
+app.use("/api/users", logRouter);
 
 const port = process.env.PORT || 3000;
 const start = async () => {
