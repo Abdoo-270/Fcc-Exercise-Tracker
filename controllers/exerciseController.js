@@ -21,10 +21,7 @@ const createExercise = async (req, res) => {
   });
   res.status(StatusCodes.CREATED).json({ exercise });
 };
-const getLogs = async (req, res) => {
-  res.json("get logs of user");
-};
+
 module.exports = {
   createExercise,
-  getLogs,
 };
