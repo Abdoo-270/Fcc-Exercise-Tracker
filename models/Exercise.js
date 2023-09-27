@@ -13,8 +13,7 @@ const ExerciseSchema = new mongoose.Schema({
     default: new Date(),
   },
   username: {
-    type: mongoose.Types.ObjectId,
-    ref: "User",
+    type: String,
   },
 });
 
