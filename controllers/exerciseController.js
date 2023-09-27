@@ -14,7 +14,7 @@ const createExercise = async (req, res) => {
     res.status(StatusCodes.BAD_REQUEST).json("please fill all the fields");
   }
   const exercise = await Exercise.create({
-    username: user[0].username,
+    user,
     description,
     duration,
     date,
