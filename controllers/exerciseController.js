@@ -13,7 +13,7 @@ const createExercise = async (req, res) => {
     res.status(StatusCodes.BAD_REQUEST).json("please fill all the fields");
   }
   const exercise = await Exercise.create({
-    user: user[0],
+    user: userId,
     description,
     duration,
     date,
