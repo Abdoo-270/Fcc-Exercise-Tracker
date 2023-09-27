@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 const User = require("./User");
 const ExerciseSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Types.ObjectId,
-    ref: "User",
+  username: {
+    type: String,
+  },
+  _id: {
+    type: String,
   },
   description: {
     type: String,
@@ -16,9 +18,6 @@ const ExerciseSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: new Date(),
-  },
-  username: {
-    type: String,
   },
 });
 
