@@ -8,7 +8,7 @@ const createUser = async (req, res) => {
   }
   try {
     const user = await User.create({ username });
-    res.status(StatusCodes.CREATED).json({ user });
+    res.status(StatusCodes.CREATED).json(user);
   } catch (error) {
     res.json(error);
   }
