@@ -8,7 +8,9 @@ const getSingleUserLogs = async (req, res) => {
   const user = await User.find({ _id: userId });
   const username = user[0].username;
 
-  const userExercises = await Exercise.find({ username });
+  const userExercises = await Exercise.find({ username }).select({
+    username: 0,
+  });
   const log = await Log.create({
     username,
     count: userExercises.length,
