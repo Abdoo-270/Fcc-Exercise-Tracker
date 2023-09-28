@@ -31,7 +31,7 @@ const createExercise = async (req, res) => {
     duration: exercise.duration,
     description: exercise.description,
   };
-  res.status(StatusCodes.CREATED).json(response);
+  res.status(StatusCodes.CREATED).json({ response });
 };
 
 module.exports = {
