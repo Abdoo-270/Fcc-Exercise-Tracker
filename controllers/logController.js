@@ -9,7 +9,7 @@ const getSingleUserLogs = async (req, res) => {
   //await Log.deleteMany({});
 
   const { from, to, limit } = req.query; // Parse query parameters
-  console.log(from, to, limit);
+  // console.log(from, to, limit);
   const userId = req.params.id;
   const user = await User.find({ _id: userId });
   const username = user[0].username;
@@ -18,10 +18,18 @@ const getSingleUserLogs = async (req, res) => {
   const userExercises = await Exercise.find({ userId }).select({
     username: 0,
   });
+  // Convert the date field to a string representation
+  const userExercisesWithDateString = userExercises.map((exercise) => {
+    return {
+      ...exercise._doc,
+      date: exercise.date.toDateString(), // Convert the Date to ISO string
+    };
+  });
+  console.log(userExercisesWithDateString);
   const log = await Log.create({
     username,
-    count: userExercises.length,
-    log: userExercises,
+    count: userExercisesWithDateString.length,
+    log: userExercisesWithDateString,
   });
   res.json(log);
 };

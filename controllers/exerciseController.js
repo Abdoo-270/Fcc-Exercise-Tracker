@@ -5,7 +5,6 @@ const { StatusCodes } = require("http-status-codes");
 const createExercise = async (req, res) => {
   const userId = req.params.id;
   const user = await User.find({ _id: userId });
-  console.log(user);
   if (!user) {
     res.status(StatusCodes.NOT_FOUND).json({ error: "no user found" });
   }
