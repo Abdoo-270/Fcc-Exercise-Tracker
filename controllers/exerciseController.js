@@ -22,7 +22,16 @@ const createExercise = async (req, res) => {
     duration,
     date: date || formattedTodayDate,
   });
-  res.status(StatusCodes.CREATED).json(exercise);
+
+  // Create the response object in the correct order
+  const response = {
+    _id: user[0]._id,
+    username: user[0].username,
+    date: exercise.date,
+    duration: exercise.duration,
+    description: exercise.description,
+  };
+  res.status(StatusCodes.CREATED).json(response);
 };
 
 module.exports = {
