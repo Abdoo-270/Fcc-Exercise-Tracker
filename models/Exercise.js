@@ -9,8 +9,7 @@ const ExerciseSchema = new mongoose.Schema({
     required: [true, "please provide duraiton"],
   },
   date: {
-    type: Date,
-    default: new Date(),
+    type: String,
   },
   username: {
     type: String,

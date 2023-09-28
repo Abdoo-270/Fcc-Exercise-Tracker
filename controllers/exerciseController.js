@@ -13,11 +13,15 @@ const createExercise = async (req, res) => {
   if (!description || !duration) {
     res.status(StatusCodes.BAD_REQUEST).json("please fill all the fields");
   }
+  if (date) {
+    var formatedDate = date.toDateString();
+  }
+  const formattedTodayDate = new Date().toDateString();
   const exercise = await Exercise.create({
     username: user[0].username,
     description,
     duration,
-    date,
+    date: formatedDate || formattedTodayDate,
   });
   res.status(StatusCodes.CREATED).json({ exercise });
 };
