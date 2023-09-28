@@ -23,7 +23,7 @@ const createExercise = async (req, res) => {
     duration,
     date: formatedDate || formattedTodayDate,
   });
-  res.status(StatusCodes.CREATED).json({ exercise });
+  res.status(StatusCodes.CREATED).json(exercise);
 };
 
 module.exports = {
