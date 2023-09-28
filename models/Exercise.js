@@ -1,5 +1,10 @@
 const mongoose = require("mongoose");
 const ExerciseSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   description: {
     type: String,
     required: [true, "Please provide description"],
@@ -9,9 +14,6 @@ const ExerciseSchema = new mongoose.Schema({
     required: [true, "please provide duraiton"],
   },
   date: {
-    type: String,
-  },
-  username: {
     type: String,
   },
 });
