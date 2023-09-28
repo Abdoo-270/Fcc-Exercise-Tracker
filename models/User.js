@@ -4,6 +4,13 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide name"],
   },
+  exercises: [
+    {
+      description: String,
+      duration: Number,
+      date: Date,
+    },
+  ],
 });
 
 module.exports = mongoose.model("User", UserSchema);

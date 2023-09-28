@@ -25,7 +25,7 @@ const addExercise = async (req, res) => {
     await exercise.save();
 
     // Add the exercise to the user's log
-    //user.exercises.push(exercise);
+    user.exercises.push(exercise);
 
     // Save the updated user
     await user.save();

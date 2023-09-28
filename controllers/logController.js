@@ -11,7 +11,7 @@ const getSingleUserLogs = async (req, res) => {
   const username = user[0].username;
   // Apply date filters if 'from' and 'to' are provided
 
-  const userExercises = await Exercise.find({ username }).select({
+  const userExercises = await Exercise.find({ userId }).select({
     username: 0,
   });
   const log = await Log.create({
