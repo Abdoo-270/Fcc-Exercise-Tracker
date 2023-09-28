@@ -27,7 +27,7 @@ const createExercise = async (req, res) => {
   const response = {
     _id: user[0]._id,
     username: user[0].username,
-    date: exercise.date,
+    date: exercise.date.toDateString(),
     duration: exercise.duration,
     description: exercise.description,
   };
