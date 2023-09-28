@@ -9,7 +9,7 @@ const getSingleUserLogs = async (req, res) => {
   //await Log.deleteMany({});
 
   const { from, to, limit } = req.query; // Parse query parameters
-
+  console.log(from, to, limit);
   const userId = req.params.id;
   const user = await User.find({ _id: userId });
   const username = user[0].username;

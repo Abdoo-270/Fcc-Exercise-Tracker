@@ -15,7 +15,7 @@ const ExerciseSchema = new mongoose.Schema({
     required: [true, "please provide duraiton"],
   },
   date: {
-    type: String,
+    type: Date,
   },
 });
 
