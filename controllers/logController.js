@@ -4,6 +4,10 @@ const Log = require("../models/Log");
 const { StatusCodes } = require("http-status-codes");
 
 const getSingleUserLogs = async (req, res) => {
+  //await Exercise.deleteMany({});
+  //await User.deleteMany({});
+  //await Log.deleteMany({});
+
   const { from, to, limit } = req.query; // Parse query parameters
 
   const userId = req.params.id;

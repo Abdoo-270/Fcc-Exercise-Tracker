@@ -10,7 +10,7 @@ const createUser = async (req, res) => {
     const user = await User.create({ username });
     res.status(StatusCodes.CREATED).json(user);
   } catch (error) {
-    res.json(error);
+    res.json("server error");
   }
 };
 const getAllUsers = async (req, res) => {

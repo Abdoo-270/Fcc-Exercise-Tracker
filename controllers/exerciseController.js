@@ -1,3 +1,37 @@
+const Exercise = require("../models/Exercise");
+const User = require("../models/User");
+const { StatusCodes } = require("http-status-codes");
+
+const createExercise = async (req, res) => {
+  const userId = req.params.id;
+  const user = await User.find({ _id: userId });
+  console.log(user);
+  if (!user) {
+    res.status(StatusCodes.NOT_FOUND).json({ error: "no user found" });
+  }
+  const { description, duration, date } = req.body;
+  if (!description || !duration) {
+    res.status(StatusCodes.BAD_REQUEST).json("please fill all the fields");
+  }
+  if (date) {
+    var formatedDate = date.toDateString();
+  }
+  const formattedTodayDate = new Date().toDateString();
+  const exercise = await Exercise.create({
+    username: user[0].username,
+    userId: user[0]._id,
+    description,
+    duration,
+    date: formatedDate || formattedTodayDate,
+  });
+  res.status(StatusCodes.CREATED).json(exercise);
+};
+
+module.exports = {
+  createExercise,
+};
+
+/*
 const { StatusCodes } = require("http-status-codes");
 const Exercise = require("../models/Exercise"); // Import your Exercise model
 const User = require("../models/User"); // Import your User model
@@ -19,10 +53,7 @@ const addExercise = async (req, res) => {
     res.status(StatusCodes.BAD_REQUEST).json({ error: "something wrong" });
   }
 };
-
 // Create a new exercise
-
-/*
     const exercise = new Exercise({
       userId: userId,
       description: description,
@@ -50,42 +81,10 @@ const addExercise = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Server error" });
   }
-*/
+
 
 module.exports = {
   addExercise,
 };
 
-/*
-const Exercise = require("../models/Exercise");
-const User = require("../models/User");
-const { StatusCodes } = require("http-status-codes");
-
-const createExercise = async (req, res) => {
-  const userId = req.params.id;
-  const user = await User.find({ _id: userId });
-  console.log(user);
-  if (!user) {
-    res.status(StatusCodes.NOT_FOUND).json({ error: "no user found" });
-  }
-  const { description, duration, date } = req.body;
-  if (!description || !duration) {
-    res.status(StatusCodes.BAD_REQUEST).json("please fill all the fields");
-  }
-  if (date) {
-    var formatedDate = date.toDateString();
-  }
-  const formattedTodayDate = new Date().toDateString();
-  const exercise = await Exercise.create({
-    userId: user,
-    description,
-    duration,
-    date: formatedDate || formattedTodayDate,
-  });
-  res.status(StatusCodes.CREATED).json(exercise);
-};
-
-module.exports = {
-  createExercise,
-};
 */
