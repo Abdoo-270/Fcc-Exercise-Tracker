@@ -1,19 +1,28 @@
+const { StatusCodes } = require("http-status-codes");
 const Exercise = require("../models/Exercise"); // Import your Exercise model
 const User = require("../models/User"); // Import your User model
 
 const addExercise = async (req, res) => {
   const userId = req.params.id;
   const { description, duration, date } = req.body;
-
   try {
-    // Find the user by _id
     const user = await User.findById(userId);
-
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
+    user.description = description;
+    user.duration = duration;
+    user.date = date || new Date();
+    await user.save();
+    res.status(StatusCodes.CREATED).json({ user });
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).json({ error: "something wrong" });
+  }
+};
 
-    // Create a new exercise
+// Create a new exercise
+
+/*
     const exercise = new Exercise({
       userId: userId,
       description: description,
@@ -41,7 +50,7 @@ const addExercise = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Server error" });
   }
-};
+*/
 
 module.exports = {
   addExercise,
